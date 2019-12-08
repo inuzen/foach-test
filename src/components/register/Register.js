@@ -161,7 +161,7 @@ export default function Register() {
       error: false,
       helperText: ''
     },
-    passwordConfrim: {
+    passwordConfirm: {
       value: '',
       error: false,
       helperText: ''
@@ -189,7 +189,6 @@ const handleChange = event => {
 
   switch(trg.name) {
     case 'investAmnt':
-    console.log(trg.value);
       if (trg.value==='') {
         error = true;
         helperText = 'Please select something!';
@@ -207,7 +206,7 @@ const handleChange = event => {
         helperText = 'Incorrect email format';
       } else if(values.email.value!==trg.value){
         error = true;
-        helperText = 'Email do not match';
+        helperText = 'Emails do not match';
       }
     break;
     case 'password':
@@ -215,8 +214,9 @@ const handleChange = event => {
         error = true;
         helperText = 'Passwords must be at least 8 symbols';
       }
-      break;
+    break;
     case 'passwordConfirm':
+    console.log(values.password.value + "" + trg.value);
       if (trg.value.length<8) {
         error = true;
         helperText = 'Passwords must be at least 8 symbols';
@@ -369,7 +369,7 @@ if (redirect) {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                inputProps = {{minLength: 2, maxLength: 12}}
+                inputProps = {{minLength: 6, maxLength: 30}}
                 variant="outlined"
                 error = {values.email.error}
                 helperText = {values.email.helperText}
@@ -383,7 +383,7 @@ if (redirect) {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                inputProps = {{minLength: 2, maxLength: 12}}
+                inputProps = {{minLength: 6, maxLength: 30}}
                 variant="outlined"
                 required
                 fullWidth
@@ -426,9 +426,9 @@ if (redirect) {
             <Grid item xs={12}>
               <TextField
                 id="passwordConfirm"
-                name="passwordConfrim"
-                error = {values.passwordConfrim.error}
-                helperText = {values.passwordConfrim.helperText}
+                name="passwordConfirm"
+                error = {values.passwordConfirm.error}
+                helperText = {values.passwordConfirm.helperText}
                 label="Confirm Password"
                 inputProps = {{minLength: 8}}
                 type={values.showConfirmPassword ? "text" : "password"}
